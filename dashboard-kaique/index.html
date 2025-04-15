@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - KaiqueNP</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <header class="bg-blue-600 text-white p-5 shadow-md">
+    <h1 class="text-3xl font-bold text-center">📊 Dashboard de Dados - KaiqueNP</h1>
+  </header>
+
+  <main class="max-w-5xl mx-auto p-6 space-y-10">
+    <section class="bg-white rounded-2xl shadow-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Vendas Mensais</h2>
+      <canvas id="barChart"></canvas>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Distribuição de Usuários</h2>
+      <canvas id="pieChart"></canvas>
+    </section>
+
+    <section class="bg-white rounded-2xl shadow-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Acessos da Semana</h2>
+      <canvas id="lineChart"></canvas>
+    </section>
+  </main>
+
+  <script>
+    const barCtx = document.getElementById('barChart').getContext('2d');
+    new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'],
+        datasets: [{
+          label: 'Vendas',
+          data: [50, 70, 40, 90, 60],
+          backgroundColor: 'rgba(59, 130, 246, 0.6)'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: true } }
+      }
+    });
+
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+    new Chart(pieCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Desktop', 'Mobile', 'Tablet'],
+        datasets: [{
+          label: 'Usuários',
+          data: [300, 500, 200],
+          backgroundColor: ['#3B82F6', '#F87171', '#FBBF24']
+        }]
+      }
+    });
+
+    const lineCtx = document.getElementById('lineChart').getContext('2d');
+    new Chart(lineCtx, {
+      type: 'line',
+      data: {
+        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
+        datasets: [{
+          label: 'Acessos',
+          data: [120, 150, 170, 130, 160],
+          borderColor: '#10B981',
+          backgroundColor: 'rgba(16, 185, 129, 0.2)',
+          fill: true,
+          tension: 0.4
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
